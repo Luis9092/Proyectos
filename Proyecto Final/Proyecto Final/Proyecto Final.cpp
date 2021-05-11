@@ -11,6 +11,8 @@
 #include "Puesto.h"
 #include "Empleado.h"
 #include"Cliente.h"
+#include "Maestro_detalle_compras.h"
+#include <conio.h>
 
 using namespace  std;
 void gotoxy(int x, int y)
@@ -794,7 +796,8 @@ void control7() {
 	} while (a != 5);
 }
 void insertar_Maestro_detalle_compras() {
-	int No_orden, idproveedor,fechaorden,fecha_ingreso;
+	int No_orden, idproveedor, idcompra, idproducto, Cantidad, Preciocosto;
+	string  fechaorden,fechaIn = "now()";
 	gotoxy(20, 2); cout << ("__________________________________________________________________________________");
 	gotoxy(20, 3); cout << ("|                    D A T O S             G U A R D A D O S                      |");
 	gotoxy(20, 4); cout << ("|_________________________________________________________________________________|");
@@ -803,17 +806,31 @@ void insertar_Maestro_detalle_compras() {
 
 	Productos P = Productos();
 	P.leer();
-
-	cout << ("Ingrese Id Proveedor: ");
+	_getch();
+	cout << ("\n\n");
+	cout << ("Ingrese No. de Orden: ");
 	cin >> No_orden;
 
-	cout << ("Ingrese Id Proveedor: ");
+	cout << ("Ingrese Id proveedor: ");
 	cin >> idproveedor;
 
-	cout << ("Ingrese Id Proveedor: ");
+	cout << ("Ingrese Fecha orden: ");
 	cin >> fechaorden;
+	
+	cout << ("Ingrese Id Compra: ");
+	cin >> idcompra;
 
+	cout << ("Ingrese Id Producto: ");
+	cin >> idproducto;
+
+	cout << ("Ingrese Cantidad: ");
+	cin >> Cantidad;
+
+	cout << ("Precio Costo unitario: ");
+	cin >> Preciocosto;
+	Maestro_detalle_compras z = Maestro_detalle_compras(No_orden,idproveedor ,fechaorden,fechaIn);
+	z.Crear1();
 	
-	
+
 	system("pause");
 }

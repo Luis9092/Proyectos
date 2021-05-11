@@ -48,9 +48,10 @@ protected:
 protected:
 	Compras() {
 	}
-	Compras(int Nocompra, int idpro, string fechaO,  string ing) {
+	Compras(int Nocompra, int idprod, string fechaO,  string ing) {
 		No_orden_compra = Nocompra;
-		idProveedor = idpro;
+		idProveedor = idprod;
+		fecha_orden = fechaO;
 		fecha_ingreso = ing;
 	}
 };

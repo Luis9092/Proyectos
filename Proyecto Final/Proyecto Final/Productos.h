@@ -59,7 +59,7 @@ public:
 
 
 		if (cn.getConectar()) {
-			string  insertar = "inser into productos(producto,idMarca,descripcion,imagen,precio_costo,precio_venta,existencia,fecha_ingreso) VALUES ('" + producto + "'," + a + ",'" + Descripcion + "','" +Imagen + "'," + b + "," + c + "," + d + "," +FechaI + ")";
+			string  insertar = "insert into productos(producto,idMarca,descripcion,imagen,precio_costo,precio_venta,existencia,fecha_ingreso) VALUES ('" + producto + "'," + a + ",'" + Descripcion + "','" +Imagen + "'," + b + "," + c + "," + d + "," +FechaI + ")";
 			const char* i = insertar.c_str();
 			// executar el query
 			q_estado = mysql_query(cn.getConectar(), i);

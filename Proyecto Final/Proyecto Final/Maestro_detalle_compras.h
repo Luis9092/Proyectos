@@ -2,7 +2,6 @@
 #include "Producto.h"
 #include "Maestro_detalle_compras.h"
 #include <iostream>
-#include "Persona.h"
 #include "ConexionDB.h"
 #include <string>
 #include <mysql.h>
@@ -24,12 +23,12 @@ class Maestro_detalle_compras : Compras {
 public:
 	Maestro_detalle_compras() {
 	}
-	Maestro_detalle_compras(int Nocompra, int idpro, string fechaO, string ing) : Compras( Nocompra, idpro, fechaO,  ing) {
+	Maestro_detalle_compras(int Nocompra, int idprod, string fechaO, string ing) : Compras( Nocompra, idprod, fechaO,  ing) {
 
 	}
 
 	void setNo_orden_compra(int Nocompra) { No_orden_compra = Nocompra; }
-	void setAId_proveedor(int idpro) { idProveedor = idpro; }
+	void setAId_proveedor(int idprod) { idProveedor = idprod; }
 	void setAFecha_orden(string fechaO) { fecha_orden = fechaO; }
 	void setFecha_ingreso(string ing) { fecha_ingreso = ing; }
 
@@ -40,16 +39,16 @@ public:
 	string getFecha_ingreso() { return  fecha_ingreso; }
 
 	
-	void Crear() {
+	void Crear1() {
 		int q_estado;
 		ConexionBD cn = ConexionBD();
 
 		cn.abrir_conexion();
-		string a = to_string(No_orden_compra);
-		string b = to_string(idProveedor);
+		string x = to_string(No_orden_compra);
+		string c = to_string(idProveedor);
 
 		if (cn.getConectar()) {
-			string  insertar = "insert into compras(no_orden_compra,idproveedor,fecha_orden,fechaingreso) VALUES (" + a + "," + b + ",'" + fecha_orden + "','" + fecha_ingreso + "')";
+			string  insertar = "insert into compras(no_orden_compra,idproveedor,fecha_orden,fechaingreso) VALUES (" + x + "," + c + ",'" + fecha_orden + "'," + fecha_ingreso + ")";
 			const char* i = insertar.c_str();
 			// executar el query
 			q_estado = mysql_query(cn.getConectar(), i);
