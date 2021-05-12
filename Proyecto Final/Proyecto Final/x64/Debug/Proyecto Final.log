@@ -1,7 +1,3 @@
-﻿  Maestro_detalle_compras.cpp
-  Marcas.cpp
-  Producto.cpp
-  Productos.cpp
-  Proyecto Final.cpp
-  Generando código...
+﻿  Proyecto Final.cpp
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Proyecto Final.cpp(1009,6): warning C4101: 'id': variable local sin referencia
   Proyecto Final.vcxproj -> C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\x64\Debug\Proyecto Final.exe

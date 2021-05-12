@@ -146,6 +146,7 @@
     <ClCompile Include="Cliente.cpp" />
     <ClCompile Include="ConexionDB.cpp" />
     <ClCompile Include="Empleado.cpp" />
+    <ClCompile Include="Login.cpp" />
     <ClCompile Include="Maestro_detalle_compras.cpp" />
     <ClCompile Include="Marcas.cpp" />
     <ClCompile Include="Persona.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="Cliente.h" />
     <ClInclude Include="ConexionDB.h" />
     <ClInclude Include="Empleado.h" />
+    <ClInclude Include="Login2.h" />
     <ClInclude Include="Maestro_detalle_compras.h" />
     <ClInclude Include="Marcas.h" />
     <ClInclude Include="Persona.h" />

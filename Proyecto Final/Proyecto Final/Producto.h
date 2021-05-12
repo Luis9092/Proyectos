@@ -55,3 +55,22 @@ protected:
 		fecha_ingreso = ing;
 	}
 };
+
+
+class Compras_detalle
+{
+	// atributos
+protected:
+	int Id_compra = 0, Id_producto = 0, cantidad=0;
+	float precio_costo_U;
+	// costructor
+protected:
+	Compras_detalle() {
+	}
+	Compras_detalle(int Nocompra, int idprod, int cant, float pcu) {
+		Id_compra = Nocompra;
+		Id_producto = idprod;
+		cantidad = cant;
+		precio_costo_U =pcu;
+	}
+};

@@ -32,6 +32,7 @@ public:
 	void setADireccion(string direc) { direccion = direc; }
 	void setTelefono(string tel) { telefono = tel; }
 	
+	
 
 	string getProveedor() { return proveedor; }
 	string getNit() { return nit; }
@@ -44,9 +45,9 @@ public:
 
 		cn.abrir_conexion();
 
-
 		if (cn.getConectar()) {
 			string  insertar = "insert into proveedores(proveedor,nit,direccion,telefono) VALUES ('" + proveedor + "','" + nit + "','" + direccion + "','" + telefono + "')";
+		
 			const char* i = insertar.c_str();
 			// executar el query
 			q_estado = mysql_query(cn.getConectar(), i);
