@@ -61,6 +61,8 @@ public:
 		MYSQL_ROW fila;
 		MYSQL_RES* resultado;
 		cn.abrir_conexion();
+		int ab = 8, ac = 8;
+		int ba = 8, be = 8, bc = 8;
 
 		if (cn.getConectar()) {
 			string a;
@@ -70,7 +72,12 @@ public:
 			if (!q_estado) {
 				resultado = mysql_store_result(cn.getConectar());
 				while (fila = mysql_fetch_row(resultado)) {
-					cout << fila[0] << "  |" << fila[1] << endl;
+					gotoxy(41, ab++); cout << fila[0];
+					gotoxy(46, ac++); cout << fila[1];
+
+					gotoxy(40, bc++); cout << ("|");
+					gotoxy(45, ba++); cout << ("|");
+					gotoxy(78, be++); cout << ("|");
 				}
 			}
 			else {
@@ -150,18 +157,18 @@ public:
 
 					gotoxy(30, 7); cout << "------------    [" << fila[0] << "]     ------------- ";
 					gotoxy(25, 8); cout << "Puesto: " << fila[1];
-
-
-					cout << ("\n\nPuesto: ") << fila[1] << endl;
+					cout << "\ningrese el nuevo puesto: \n";
+					cin >> marca;
 					cout << ("Desea modificarlo [s/n]: ");
 					cin >> s;
 					if ((s == 's') || (s == 'S')) {
-						cout << "ingrese el nuevo puesto: \n";
-						cin >> marca;
 						string consulta2 = "update puestos set puesto = '" + marca + "' where idPuesto =" + Id + "";
 						const char* c = consulta2.c_str();
 						q_estado = mysql_query(cn.getConectar(), c);
-						cout << (" Marca modificado correctamente ");
+						cout << (" Puesto modificado correctamente \n");
+					}
+					else {
+						cout << "\n\n--------- Error al modificar  ---------" << endl;
 					}
 
 				}

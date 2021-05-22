@@ -14,10 +14,11 @@
 #include "Maestro_detalle_compras.h"
 #include <conio.h>
 
+#define getch() _getch()
+
 #define s 40
 #define ENTER 13 
 #define BACKSPACE 8
-#define getch() _getch()
 
 void fondo();
 void cambiarcolor(int x);
@@ -34,6 +35,7 @@ void gotoxy(int x, int y)
 	dwPos.Y = y;
 	SetConsoleCursorPosition(hcon, dwPos);
 }
+
 void control7();
 void control6();
 void control5();
@@ -42,10 +44,6 @@ void control3();
 void control2();
 void control1();
 void control();
-void controlz();
-void Mostrar();
-void Registrarse();
-void crear_usuario();
 void cargando();
 void marco();
 void bla(int);
@@ -81,36 +79,33 @@ void eliminar_cliente();
 void modificar_cliente();
 
 void insertar_Maestro_detalle_compras();
-
 void mostrar_Maestro_detalle_compras();
-/*
 void eliminar_Maestro_detalle_compras();
 void modificar_Maestro_detalle_compras();
-*/
 
-
-struct Login {
-
-	char Nombre[40];
-	char Apellidos[40];
-	char contra[20];
-	int codigo;
-};
 
 int main() {
 	//	system("mode con: cols=390 lines=540");
 	//Login2 a;
 	//a.controlz();
-	controlz();
+	_getch();
+//	mostrar_Maestro_detalle_compras();
+//	insertar_Maestro_detalle_compras();
+	control1();
 }
 
 
 void control1() {
 	int a;
 	do {
-		co(0,240);
+		
+
 		system("cls");
+		fondo();
 		marco();
+		
+		co(0, 242);
+
 		gotoxy(47, 2); cout << ("같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같�");
 		gotoxy(47, 3); cout << ("같�                 M E N U    D E    O P C I O N E S                 같�");
 		gotoxy(47, 4); cout << ("같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같�");
@@ -149,7 +144,7 @@ void control1() {
 		case 6: system("cls");
 			control6();
 			break;
-	
+
 		case 7: system("cls");
 			control7();
 			break;
@@ -175,68 +170,83 @@ void control() {
 		case 1: system("cls");
 			insertar_producto();
 			break;
-			
+
 		case 2: system("cls");
 			mostrar_producto();
 			break;
-			
+
 		case 3:system("cls");
 			eliminar_producto();
 			break;
-	
+
 		case 4:system("cls");
 			modificar_producto();
 			break;
-	
+
 		}
-		
+
 	} while (a != 5);
 }
 
 
 void insertar_producto()
 {
-	string pro, desc, ima, Fecha_Ingreso="now()";
-	int idmar,exis;
+	string pro, desc, ima, Fecha_Ingreso = "now()";
+	int idmar, exis, t = 15;
 	float pcosto, pventa;
 	gotoxy(30, 2); cout << ("__________________________________________________________________________________");
 	gotoxy(30, 3); cout << ("|                 I N S E R T A R             D A T O S                           |");
 	gotoxy(30, 4); cout << ("|_________________________________________________________________________________|");
 
 	cin.ignore();
-	gotoxy(40, 8); cout << "Ingrese Producto: ";
+	gotoxy(20, 8); cout << "Ingrese Producto: ";
 	getline(cin, pro);
-	gotoxy(40, 9); cout << "Ingrese Id Marca: ";
-    cin>>idmar;
-	cin.ignore();
-	gotoxy(40, 10); cout << "Ingrese Descripcion: ";
+	gotoxy(20, 9); cout << "Ingrese Descripcion: ";
 	getline(cin, desc);
-	gotoxy(40, 11); cout << "Ingrese Imagen: ";
+	gotoxy(20, 10); cout << "Ingrese Imagen: ";
 	getline(cin, ima);
-	gotoxy(40, 12); cout << "Ingrese Precio Costo: ";
+	gotoxy(20, 11); cout << "Ingrese Precio Costo: ";
 	cin >> pcosto;
-	gotoxy(40, 13); cout << "Ingrese Precio Venta: ";
+	gotoxy(20, 12); cout << "Ingrese Precio Venta: ";
 	cin >> pventa;
-	gotoxy(40, 14); cout << "Ingrese Existencia: ";
+	gotoxy(20, 13); cout << "Ingrese Existencia: ";
 	cin >> exis;
+	gotoxy(20, 14); cout << "Ingrese Id Marca: ";
+	Productos Pu = Productos();
+	Pu.Leer_marca();
+	gotoxy(38, 14); cin >> idmar;
 
-	Productos P = Productos (pro, idmar, desc, ima, pcosto, pventa,exis,Fecha_Ingreso);
+	while (Pu.validar(idmar) == 1)
+	{
+		gotoxy(20, t); cout << "Id marca invalido, ingrese un id existente: ";
+		t++;
+		cin >> idmar;
+		Pu.validar(idmar);
+	}
+
+	Productos P = Productos(pro, idmar, desc, ima, pcosto, pventa, exis, Fecha_Ingreso);
 
 	P.crear();
 
 	system("pause");
 
 }
+
 void mostrar_producto() {
-	gotoxy(20, 2); cout << ("__________________________________________________________________________________");
-	gotoxy(20, 3); cout << ("|                    D A T O S             G U A R D A D O S                      |");
-	gotoxy(20, 4); cout << ("|_________________________________________________________________________________|");
-	gotoxy(0, 6); cout << "ID |" << "Producto |" << "Descripcion |" << " Imagen  |" << "Precio costo |" << "Precio Venta |" << "Existencia |    " << "Fecha Ingreso       |" << "Id marca";
-	cout << ("\n\n\n");
+	gotoxy(45, 0); cout << ("__________________________________________________________________________________");
+	gotoxy(45, 1); cout << ("|                    D A T O S             G U A R D A D O S                      |");
+	gotoxy(45, 2); cout << ("|_________________________________________________________________________________|");
+	gotoxy(0, 5); cout<<("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+	gotoxy(0, 6); cout << "|ID |";gotoxy(10, 6); cout << "     Producto     |"; gotoxy(32, 6); cout << "  Id marca   |"; gotoxy(56, 6); cout << "     Descripcion      |";
+	gotoxy(88, 6); cout << "     Imagen     |"; gotoxy(106, 6); cout << "Precio costo|"; gotoxy(120, 6); cout << "Precio Venta |";
+	gotoxy(135, 6); cout << "Existencia|"; gotoxy(150, 6); cout<< "Fecha Ingreso    |";
+	gotoxy(0, 7); cout << ("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
 	Productos c = Productos();
 	c.leer();
-	system("pause");
+	 cout << ("\n-----------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+	 getch();
 }
 
 void eliminar_producto() {
@@ -294,15 +304,15 @@ void control2() {
 		case 2: system("cls");
 			mostrar_marca();
 			break;
-			
+
 		case 3:system("cls");
 			eliminar_marca();
 			break;
-			
+
 		case 4:system("cls");
 			modificar_marca();
 			break;
-		
+
 
 		}
 	} while (a != 5);
@@ -327,19 +337,24 @@ void insertar_marca() {
 
 
 void mostrar_marca() {
-	gotoxy(20, 2); cout << ("__________________________________________________________________________________");
-	gotoxy(20, 3); cout << ("|                    D A T O S             G U A R D A D O S                      |");
-	gotoxy(20, 4); cout << ("|_________________________________________________________________________________|");
-	gotoxy(0, 6); cout << "ID |" << "Marca |";
-	cout << ("\n\n");
+	gotoxy(45, 0); cout << ("__________________________________________________________________________________");
+	gotoxy(45, 1); cout << ("|                    D A T O S             G U A R D A D O S                      |");
+	gotoxy(45, 2); cout << ("|_________________________________________________________________________________|");
+	gotoxy(40, 5); cout << ("---------------------------------------");
+	gotoxy(40, 6); cout << "|ID  |"; gotoxy(46,6);cout << "             Marca              |";
+	gotoxy(40,7); cout << ("---------------------------------------");
+
 	Marcas P = Marcas();
 	P.Leer();
+	cout << ("\n\t\t\t\t\t---------------------------------------");
+
 	system("pause");
 }
 
 void eliminar_marca() {
-	int idmarca;
 	system("cls");
+	int idmarca;
+	
 	gotoxy(20, 2); cout << ("__________________________________________________________________________________");
 	gotoxy(20, 3); cout << ("|                   E L I M I N A R                  D A T O S                    |");
 	gotoxy(20, 4); cout << ("|_________________________________________________________________________________|");
@@ -347,9 +362,9 @@ void eliminar_marca() {
 
 	gotoxy(20, 6); cout << "Ingrese el id del registro que desea eliminar: ";
 	cin >> idmarca;
-	cin.ignore();
-	Marcas P = Marcas();
-	P.eliminar(idmarca);
+	
+	Marcas dd = Marcas();
+	dd.eliminar(idmarca);
 
 	system("pause");
 
@@ -392,15 +407,15 @@ void control3() {
 		case 2: system("cls");
 			mostrar_proveedor();
 			break;
-			
+
 		case 3:system("cls");
 			eliminar_proveedor();
 			break;
-		
+
 		case 4:system("cls");
 			modificar_proveedor();
 			break;
-		
+
 		}
 
 	} while (a != 5);
@@ -428,14 +443,18 @@ void insertar_proveedor() {
 }
 
 void mostrar_proveedor() {
-	gotoxy(20, 2); cout << ("__________________________________________________________________________________");
-	gotoxy(20, 3); cout << ("|                    D A T O S             G U A R D A D O S                      |");
-	gotoxy(20, 4); cout << ("|_________________________________________________________________________________|");
-	gotoxy(0, 6); cout << "ID |" << "Proveedor    |" << "Nit  |      " << "Direccion    |" << "Telefono |";
-	cout << ("\n\n");
+	gotoxy(45, 0); cout << ("__________________________________________________________________________________");
+	gotoxy(45, 1); cout << ("|                    D A T O S             G U A R D A D O S                      |");
+	gotoxy(45, 2); cout << ("|_________________________________________________________________________________|");
+	gotoxy(40, 5); cout << ("-----------------------------------------------------------------------------------------------");
+	gotoxy(40, 6); cout << "| ID |"; gotoxy(53, 6); cout << "Proveedor      |"; gotoxy(79, 6); cout << "Nit      |";
+	gotoxy(100, 6); cout << "Direccion         |"; gotoxy(125, 6); cout << "Telefono |";
+	gotoxy(40, 7); cout << ("-----------------------------------------------------------------------------------------------");
+
 	Proveedor P = Proveedor();
 	P.Leer();
-	system("pause");
+	 cout << ("\n\t\t\t\t\t-----------------------------------------------------------------------------------------------");
+	 getch();
 }
 
 void eliminar_proveedor() {
@@ -448,7 +467,7 @@ void eliminar_proveedor() {
 
 	gotoxy(20, 6); cout << "Ingrese el id del registro que desea eliminar: ";
 	cin >> idpro;
-	
+
 	Proveedor P = Proveedor();
 	P.eliminar(idpro);
 
@@ -489,14 +508,14 @@ void control4() {
 		case 1: system("cls");
 			insertar_puesto();
 			break;
-					case 2: system("cls");
+		case 2: system("cls");
 			mostrar_puesto();
 			break;
 
 		case 3:system("cls");
 			eliminar_puesto();
 			break;
-		
+
 		case 4:system("cls");
 			modificar_puesto();
 			break;
@@ -515,20 +534,27 @@ void insertar_puesto() {
 	cin.ignore();
 	gotoxy(30, 8); cout << "Ingrese Puesto: ";
 	getline(cin, puesto);
-	
+
 	Puesto P = Puesto(puesto);
 	P.Crear();
 	system("pause");
 }
 
 void mostrar_puesto() {
-	gotoxy(20, 2); cout << ("__________________________________________________________________________________");
-	gotoxy(20, 3); cout << ("|                    D A T O S             G U A R D A D O S                      |");
-	gotoxy(20, 4); cout << ("|_________________________________________________________________________________|");
-	gotoxy(0, 6); cout << "ID |" << "  Puesto";
-	cout << ("\n\n");
+	gotoxy(45,0); cout << ("__________________________________________________________________________________");
+	gotoxy(45, 1); cout << ("|                    D A T O S             G U A R D A D O S                      |");
+	gotoxy(45, 2); cout << ("|_________________________________________________________________________________|");
+	
+	gotoxy(40, 5); cout << ("---------------------------------------");
+	gotoxy(40, 6); cout << "| ID |";
+	gotoxy(60,6);cout <<"Puesto            |";
+	gotoxy(40, 7); cout << ("---------------------------------------");
+
 	Puesto P = Puesto();
 	P.Leer();
+	cout << ("\n\t\t\t\t\t-------------------------------------- - ");
+
+
 	system("pause");
 }
 
@@ -579,69 +605,79 @@ void control5() {
 		case 1: system("cls");
 			insertar_empleado();
 			break;
-			
+
 		case 2: system("cls");
 			mostrar_empleado();
 			break;
-			
+
 		case 3:system("cls");
 			eliminar_empleado();
 			break;
-		
+
 		case 4:system("cls");
 			modificar_empleado();
 			break;
-		
+
 		}
 
 	} while (a != 5);
 }
 
 void insertar_empleado() {
-	string nombres,apellidos, direccion, telefono, dpi,fechaN,fecha_inicio,fecha_ingreso="now()";
-	int genero, idpuesto;
+	string nombres, apellidos, direccion, telefono, dpi, fechaN, fecha_inicio, fecha_ingreso = "now()";
+	int  idpuesto, t = 17, a = 0, b = 1; int cd;
+	char genero;
 	gotoxy(30, 2); cout << ("__________________________________________________________________________________");
 	gotoxy(30, 3); cout << ("|                 I N S E R T A R             D A T O S                           |");
 	gotoxy(30, 4); cout << ("|_________________________________________________________________________________|");
-
 	cin.ignore();
-	gotoxy(30, 8); cout << "Ingrese Nombres: ";
-	getline(cin,nombres);
-	cin.ignore();
+	gotoxy(20, 8); cout << "Ingrese Nombres: ";
+	getline(cin, nombres);
 
-	gotoxy(30, 9); cout << "Ingrese Apellidos: ";
+	gotoxy(20, 9); cout << "Ingrese Apellidos: ";
 	getline(cin, apellidos);
-	cin.ignore();
-	
-	gotoxy(30, 10); cout << "Ingrese Direccion: ";
+
+	gotoxy(20, 10); cout << "Ingrese Direccion: ";
 	getline(cin, direccion);
-	cin.ignore();
-	
-	gotoxy(30, 11); cout << "Ingrese Telefono: ";
+
+	gotoxy(20, 11); cout << "Ingrese Telefono: ";
 	getline(cin, telefono);
-	cin.ignore();
-	
-	gotoxy(30, 12); cout << "Ingrese No DPI: ";
+
+	gotoxy(20, 12); cout << "Ingrese No DPI: ";
 	getline(cin, dpi);
-	cin.ignore();
-	
-	gotoxy(30, 13); cout << "Ingrese Genero[0, 1]: ";
+
+	gotoxy(20, 13); cout << "Ingrese Genero[F,M]: ";
 	cin >> genero;
 
+	if (genero == 'M' || genero == 'm') {
+		cd = 1;
+	}
+	else if (genero == 'F' || genero == 'f') {
+		cd = 0;
+	}
+
 	cin.ignore();
-	gotoxy(30, 14); cout << "Ingrese Fecha Nacimiento: ";
+	gotoxy(20, 14); cout << "Ingrese Fecha Nacimiento: ";
 	cin >> fechaN;
 
-	cin.ignore();
-	gotoxy(30, 15); cout << "Ingrese Id puesto: ";
-	cin >> idpuesto;
-
-	cin.ignore();
-	gotoxy(30, 16); cout << "Ingrese Fecha de Incio laboral: ";
+	gotoxy(20, 15); cout << "Ingrese Fecha de Incio laboral: ";
 	cin >> fecha_inicio;
 
-	
-	Empleado P = Empleado(nombres,apellidos,direccion,telefono,dpi,genero,fechaN,idpuesto,fecha_inicio,fecha_ingreso);
+
+	gotoxy(20, 16); cout << "Ingrese Id puesto: ";
+	Empleado Pu = Empleado();
+	Pu.Leer_puesto();
+
+	gotoxy(39, 16); cin >> idpuesto;
+	Pu.validar(idpuesto);
+	while (Pu.validar(idpuesto) == 1) {
+		gotoxy(20, t); cout << "Id puesto invalido, ingrese un id existente: ";
+		t++;
+		cin >> idpuesto;
+		Pu.validar(idpuesto);
+	}
+
+	Empleado P = Empleado(nombres, apellidos, direccion, telefono, dpi, cd, fechaN, idpuesto, fecha_inicio, fecha_ingreso);
 	P.Crear();
 	system("pause");
 }
@@ -650,7 +686,7 @@ void mostrar_empleado() {
 	gotoxy(20, 2); cout << ("__________________________________________________________________________________");
 	gotoxy(20, 3); cout << ("|                    D A T O S             G U A R D A D O S                      |");
 	gotoxy(20, 4); cout << ("|_________________________________________________________________________________|");
-	gotoxy(0, 6); cout << "ID |" << "  Nombres " << " Apellidos" << " Direccion" << "  Telefono" << "  DPI    " << "  Genero" << " Fecha Nacimiento"  << " Fecha inicio "<<"Fecha ingreso" << " Puesto";
+	gotoxy(0, 6); cout << "ID |" << "  Nombres " << " Apellidos" << " Direccion" << "  Telefono" << "  DPI    " << "  Genero" << " Fecha Nacimiento" << " Fecha inicio " << "Fecha ingreso" << " Puesto";
 	cout << ("\n\n");
 	Empleado P = Empleado();
 	P.Leer();
@@ -660,7 +696,7 @@ void mostrar_empleado() {
 
 void eliminar_empleado() {
 	int idemp;
-	
+
 	gotoxy(20, 2); cout << ("__________________________________________________________________________________");
 	gotoxy(20, 3); cout << ("|                   E L I M I N A R                  D A T O S                    |");
 	gotoxy(20, 4); cout << ("|_________________________________________________________________________________|");
@@ -709,23 +745,24 @@ void control6() {
 		case 2: system("cls");
 			mostrar_cliente();
 			break;
-			
+
 		case 3:system("cls");
 			eliminar_cliente();
 			break;
-			
+
 		case 4:system("cls");
 			modificar_cliente();
 			break;
-	
+
 		}
 
 	} while (a != 5);
 }
 
 void insertar_cliente() {
-	string nombres, apellidos, nit,telefono,correo_electronico,fecha_ingreso = "now()";
-	int genero;
+	string nombres, apellidos, nit, telefono, correo_electronico, fecha_ingreso = "now()";
+	char genero;
+	int cd;
 	gotoxy(30, 2); cout << ("__________________________________________________________________________________");
 	gotoxy(30, 3); cout << ("|                 I N S E R T A R             D A T O S                           |");
 	gotoxy(30, 4); cout << ("|_________________________________________________________________________________|");
@@ -734,33 +771,44 @@ void insertar_cliente() {
 	gotoxy(40, 8); cout << "Ingrese Nombres: ";
 	getline(cin, nombres);
 	gotoxy(40, 9); cout << "Ingrese Apellidos: ";
-	getline(cin,apellidos);
+	getline(cin, apellidos);
 	gotoxy(40, 10); cout << "Ingrese Nit: ";
 	getline(cin, nit);
 	cin.ignore();
-	gotoxy(40, 11); cout << "Ingrese genero[0,1]: ";
+	gotoxy(40, 11); cout << "Ingrese genero[F,M]: ";
 	cin >> genero;
+	if (genero == 'M' || genero == 'm') {
+		cd = 1;
+	}
+	else if (genero == 'F' || genero == 'f') {
+		cd = 0;
+	}
 	cin.ignore();
 	gotoxy(40, 12); cout << "Ingrese telefono: ";
-	getline(cin,telefono);
+	getline(cin, telefono);
 	gotoxy(40, 13); cout << "Ingrese Correo electronico: ";
-	getline(cin,correo_electronico);
-
-	Cliente P = Cliente(nombres, apellidos, nit, genero, telefono, correo_electronico, fecha_ingreso);
-
+	getline(cin, correo_electronico);
+	Cliente P = Cliente(nombres, apellidos, nit, cd, telefono, correo_electronico, fecha_ingreso);
+	
 	P.Crear();
 	system("pause");
 }
 
 void mostrar_cliente() {
-	gotoxy(20, 2); cout << ("__________________________________________________________________________________");
-	gotoxy(20, 3); cout << ("|                    D A T O S             G U A R D A D O S                      |");
-	gotoxy(20, 4); cout << ("|_________________________________________________________________________________|");
-	gotoxy(0, 6); cout << "ID |" << "  Nombres " << " Apellidos" << " Nit" << "  Genero" << " Telefono    " << "  Correo electronico  " << " Fecha Ingreso";
-	cout << ("\n\n");
+	gotoxy(45, 0); cout << ("__________________________________________________________________________________");
+	gotoxy(45, 1); cout << ("|                    D A T O S             G U A R D A D O S                      |");
+	gotoxy(45, 2); cout << ("|_________________________________________________________________________________|");
+
+	gotoxy(0, 5); cout << ("-----------------------------------------------------------------------------------------------------------------------------------------------------------------");
+	gotoxy(0, 6); cout << "ID  |"; gotoxy(6, 6); cout << "        Nombres       |"; gotoxy(32, 6); cout << "     Apellidos      |";
+	gotoxy(53, 6); cout << "     NIT       |"; gotoxy(70, 6); cout<< "    Genero       |"; gotoxy(89, 6); cout << "     Telefono    |"; 
+	gotoxy(108, 6); cout << "    Correo electronico    |"; gotoxy(140, 6); cout << "   Fecha Ingreso    |";
+	gotoxy(0, 7); cout << ("-----------------------------------------------------------------------------------------------------------------------------------------------------------------");
 	Cliente P = Cliente();
 	P.Leer();
-	system("pause");
+	cout << ("\n-----------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+	getch();
 }
 
 
@@ -774,7 +822,7 @@ void eliminar_cliente() {
 	gotoxy(20, 6); cout << "Ingrese el id del registro que desea eliminar: ";
 	cin >> idcliente;
 
-    Cliente P = Cliente();
+	Cliente P = Cliente();
 	P.Eliminar(idcliente);
 
 	system("pause");
@@ -809,258 +857,117 @@ void control7() {
 		cin >> a;
 		switch (a) {
 		case 1: system("cls");
+			mostrar_Maestro_detalle_compras();
 			insertar_Maestro_detalle_compras();
 			break;
 		case 2: system("cls");
 			mostrar_Maestro_detalle_compras();
 			break;
-			/*
+
 		case 3:system("cls");
-			eliminar_producto();
+			mostrar_Maestro_detalle_compras();
+			eliminar_Maestro_detalle_compras();
+			break;
+		case 4:system("cls");
+			mostrar_Maestro_detalle_compras();
+			modificar_Maestro_detalle_compras();
 			break;
 
-		case 4:system("cls");
-			modificar_producto();
-			break;
-			*/
 
 		}
 
 	} while (a != 5);
 }
 void insertar_Maestro_detalle_compras() {
-	int No_orden, idproveedor, idcompra, idproducto, Cantidad;
-	float Preciocosto;
-	string  fechaorden,fechaIn = "now()";
+	int idproveedor, idcompra,cero, idproducto, Cantidad;
+	float Preciocosto;  
+	string  fechaorden="now()", fechaIn = "now()";
+	mostrar_Maestro_detalle_compras();
+	/*
 	gotoxy(20, 2); cout << ("__________________________________________________________________________________");
 	gotoxy(20, 3); cout << ("|                    D A T O S             G U A R D A D O S                      |");
 	gotoxy(20, 4); cout << ("|_________________________________________________________________________________|");
-	gotoxy(0, 6); cout << "ID |" << "Producto |" << "Descripcion |" << "Precio costo |" << "Precio Venta |"  << "Id marca";
+	gotoxy(0, 6); cout << "ID |" << "Producto |" << "Descripcion |" << "Precio costo |" << "Precio Venta |" << "Id marca";
 	cout << ("\n\n");
-
-	Maestro_detalle_compras P = Maestro_detalle_compras();
-	P.leer();
-	_getch();
+	*/
+	char op;
+	
 	cout << ("\n\n");
-	cout << ("Ingrese No. de Orden: ");
-	cin >> No_orden;
-
 	cout << ("Ingrese Id proveedor: ");
 	cin >> idproveedor;
 
-	cout << ("Ingrese Fecha orden: ");
-	cin >> fechaorden;
+
+	Maestro_detalle_compras z = Maestro_detalle_compras( idproveedor, fechaorden, fechaIn);
+	z.Crear2();
 
 	//Comienza el detalle
-
-	cout << ("Ingrese Id Compra: ");
-	cin >> idcompra;
-
+	do
+	{
+	cout << ("\n\n");
 	cout << ("Ingrese Id Producto: ");
 	cin >> idproducto;
-
 	cout << ("Ingrese Cantidad: ");
 	cin >> Cantidad;
 
 	cout << ("Precio Costo unitario: ");
 	cin >> Preciocosto;
 
-	Maestro_detalle_compras z = Maestro_detalle_compras(No_orden,idproveedor ,fechaorden,fechaIn);
-	z.Crear1();
+	Maestro_detalle_compras2 f = Maestro_detalle_compras2( idproducto, Cantidad, Preciocosto);
+	f.entrada();
 	
-	Maestro_detalle_compras2 f = Maestro_detalle_compras2(idcompra,idproducto,Cantidad,Preciocosto);
-	f.Crear_detalle();
+	cout << ("\n\t\tdesea agregar otro producto: ");
+	cin >> op;
 
-	system("pause");
+	} while ((op == 's') || (op == 'S'));
+
+
 }
 
 void mostrar_Maestro_detalle_compras() {
-	gotoxy(20, 2); cout << ("__________________________________________________________________________________");
-	gotoxy(20, 3); cout << ("|                    D A T O S             G U A R D A D O S                      |");
-	gotoxy(20, 4); cout << ("|_________________________________________________________________________________|");
-	gotoxy(0, 6); cout << "ID |"  << "  Cantidad  " << " Precio Unidad " << " Id Compra  " << "  id Producto  " << "   id Compra " << "  No. Orden " << "  Fecha Orden " << "     Fecha Ingreso    " << "  Id Proveedor";
-	cout << ("\n\n");
-	Maestro_detalle_compras2 P = Maestro_detalle_compras2();
-	P.Leer_compras_Detalle();
-	Maestro_detalle_compras r = Maestro_detalle_compras();
-	r.Leer_compras();
+	gotoxy(45, 0); cout << ("__________________________________________________________________________________");
+	gotoxy(45, 1); cout << ("|                    D A T O S             G U A R D A D O S                      |");
+	gotoxy(45, 2); cout << ("|_________________________________________________________________________________|");
+	gotoxy(0, 5); cout << ("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+	gotoxy(0, 6); cout << "| ID |"; gotoxy(6, 6); cout << " No. Orden|"; gotoxy(20, 6); cout << "    Producto   |"; gotoxy(40, 6); cout << "       Descripcion         |";
+	gotoxy(68, 6); cout << "Cantidad|"; gotoxy(78, 6); cout << "Pcosto|"; gotoxy(85, 6); cout << "Compra |"; gotoxy(96, 6); cout << "Marca    |"; gotoxy(108, 6); cout << "   Proveedores    |";
+	gotoxy(128, 6); cout << "Fecha orden |"; gotoxy(142, 6);cout << "     Fecha Ingreso      |";
+	gotoxy(0, 7); cout << ("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+	Maestro_detalle_compras2 rr = Maestro_detalle_compras2();
+	rr.Leer_compras();
+	 cout << ("\n-----------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
 	_getch();
 }
 
-void controlz() {
-	int a;
-	do {
-		fondo();
-		system("cls");
-		co(0, 240);
-		gotoxy(65, 5); cout << (" 1. REGISTRASE");
-		gotoxy(65, 6); cout << (" 2. VER DATOS");
-		gotoxy(65, 7); cout << (" 3. CREAR USUARIO");
-		gotoxy(65, 10); cout << ("4. SALIR");
-		gotoxy(65, 15); cout << ("Ingrese Opcion: ");
-		cin >> a;
-		switch (a) {
-		case 1: system("cls"); Registrarse();
-			break;
-		case 2: system("cls"); Mostrar();
-			break;
-		case 3:crear_usuario();
-			break;
-		}
-	} while (a != 4);
+void modificar_Maestro_detalle_compras() {
+	int idcomp;
+	cout << ("\n\n\n\t\t__________________________________________________________________________________");
+	cout << ("\n\t\t|                   M O D I F I C A R                D A T O S                    |");
+	cout << ("\n\t\t|_________________________________________________________________________________|");
+
+	cout << "\n\n\tIngrese el id del registro que desea modificar(compras): ";
+	cin >> idcomp;
+
+	Maestro_detalle_compras ff = Maestro_detalle_compras();
+
+	ff.modificar_compras(idcomp);
+
+	getch();
+
 }
 
+void eliminar_Maestro_detalle_compras() {
+	int ID;
+	cout << ("\n\n\n\t\t__________________________________________________________________________________");
+	cout << ("\n\t\t|                   E L I M I N A R                  D A T O S                    |");
+	cout << ("\n\t\t|_________________________________________________________________________________|");
 
-void crear_usuario() {
-	system("cls");
-	//	FILE* archivo = fopen(Archivo, "ab"); // ab
-		//FILE* busqueda = fopen(Archivo, "rb");
-	//	FILE* busqueda;
-	FILE* archivo;
-	fopen_s(&archivo, "c:\\Archivo proyecto\\cas.txt", "ab");
-
-	Login login;
-	string reg, ape, contras;
-	string pre, pk;
-	char  jk;
-	int error = 0;
-	int comparacion;
-
-
-	do {
-		string palabra;//buscar dato
-
-		FILE* busqueda;
-		fopen_s(&busqueda, "c:\\Archivo proyecto\\cas.txt", "rb");
-
-		cin.ignore();
-		fflush(stdin);
-		gotoxy(20, 5); cout << "Ingrese Nombres: ";
-		getline(cin, palabra);
-		char* pal;
-		pal = (char*)palabra.c_str();
-		fread(&login, sizeof(Login), 1, busqueda);
-
-		while (!feof(busqueda)) {
-			fread(&login, sizeof(Login), 1, busqueda);
-			comparacion = strcmp(pal, login.Nombre);
-			if (comparacion == 0) {
-				cout << ("Nombre Repetido, Vuela A intentarlo") << endl;
-				crear_usuario();
-				break;
-			}
-
-		}
-		fclose(busqueda);
-	} while (pre == login.Nombre);
-
-	if (comparacion != 0) {
-		fflush(stdin);
-		login.codigo = 0;
-		login.codigo = login.codigo + 1;
-		gotoxy(20, 8); cout << ("Vuela a repetir el Nombre: ");
-		getline(cin, reg);
-		strcpy_s(login.Nombre, reg.c_str());
-
-		gotoxy(20, 10); cout << ("Apellidos: ");
-		getline(cin, ape);
-		strcpy_s(login.Apellidos, ape.c_str());
-
-		gotoxy(20, 12); cout << "Ingrese Id Usuario: ";
-
-		jk = getch();
-		while (jk != ENTER) {
-			if (jk != BACKSPACE) {
-				contras.push_back(jk);
-				cout << "*";
-
-			}
-			else {
-
-				if (contras.length() > 0) {
-					cout << "\b \b";
-					contras = contras.substr(0, contras.length() - 1);
-				}
-			}
-			jk = getch();
-		}
-		pk += contras;
-		cin.ignore();
-		strcpy_s(login.contra, pk.c_str());
-		fflush(stdin);
-		gotoxy(20, 16); cout << ("Usuario Creado Correctamente");
-		fwrite(&login, sizeof(Login), 1, archivo);
-		fclose(archivo);
-	}
-}
-
-void Registrarse() {
-	int error = 0;
-	int comparacion;
-	Login login;
-	//	FILE* busqueda = fopen(Archivo, "rb");
-		//FILE* busqueda;
-	//	FILE* archivo;
-	//	busqueda = fopen("c:\\Archivo proyecto\\casa.txt", "rb");
-		//archivo = fopen("c:\\Archivo proyecto\\casa.txt", "ab");
-	FILE* busqueda;
-	fopen_s(&busqueda, "c:\\Archivo proyecto\\cas.txt", "rb");
-
-
-	int id;
-	char jk;
-	string codigo;//buscar dato
-
-	gotoxy(50, 2); cout << "Ingrese su codigo de ingreso: ";
-
-	jk = getch();
-	while (jk != ENTER) {
-
-		if (jk != BACKSPACE) {
-			codigo.push_back(jk);
-			cout << "*";
-
-		}
-		else {
-
-			if (codigo.length() > 0) {
-				cout << "\b \b";
-				codigo = codigo.substr(0, codigo.length() - 1);
-
-			}
-		}
-		jk = getch();
-	}
-	char* cstr;
-	cstr = (char*)codigo.c_str();
-	/*
-		char cstr[codigo.size() + 1];
-		codigo.copy(cstr, codigo.size() + 1);
-		cstr[codigo.size()] = '\0';
-		*/
-	while (!feof(busqueda)) {
-		fread(&login, sizeof(Login), 1, busqueda);
-
-		comparacion = strcmp(cstr, login.contra);
-
-		if ((comparacion == 0) && (login.contra == login.contra)) {
-			gotoxy(45, 3); cout << ("------------------------------------------------------------------------");
-			gotoxy(55, 4); cout << ("      Bienvenido Al sistema	   Jefe :3      ");
-			gotoxy(55, 14); cout << login.Nombre << " " << login.Apellidos;
-			gotoxy(45, 15); cout << ("------------------------------------------------------------------------");
-			cargando();
-			_getch();
-			control1();
-			error = 1;
-			break;
-		}
-	}
-
-	if (error == 0)
-	{
-		cout << endl << "Error! Usuario No creado";
-	}
-	fclose(busqueda);
+	cout << "\n\n\tIngrese el id del registro que desea eliminar: ";
+	cin >> ID;
+	Maestro_detalle_compras MP = Maestro_detalle_compras();
+	MP.Eliminar(ID);
 	getch();
 }
 
@@ -1072,39 +979,6 @@ void co(int x, int c) {
 	}
 }
 
-
-void Mostrar() {
-	system("cls");
-	//FILE* busqueda;
-	FILE* archivo;
-	//busqueda = fopen("c:\\Archivo proyecto\\casa.txt", "rb");
-
-	fopen_s(&archivo, "c:\\Archivo proyecto\\cas.txt", "r+b");
-
-	//	archivo = fopen("c:\\Archivo proyecto\\casa.txt", "ab");
-	if (!archivo) {
-		fopen_s(&archivo, "c:\\Archivo proyecto\\cas.txt", "w+b");
-		//		archivo = fopen(Archivo, "w+b");
-	}
-
-	Login login;
-	int registro = 0;
-	fread(&login, sizeof(Login), 1, archivo);
-	cout << "____________________________________________________________________" << endl;
-	cout << "id" << "|" << " Nombres " << "|\t" << "Apellidos " << "|\t " << "id" << endl;
-	do {
-		cout << "____________________________________________________________________" << endl;
-		cout << registro << " \t| " << login.Nombre << " \t|" << login.Apellidos << " \t|" << "\t|" << login.contra << endl;
-
-		fread(&login, sizeof(Login), 1, archivo);
-		registro += 1;
-
-	} while (feof(archivo) == 0);
-	cout << endl;
-
-	fclose(archivo);
-	getch();
-}
 
 void cambiarcolor(int X) {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), X);

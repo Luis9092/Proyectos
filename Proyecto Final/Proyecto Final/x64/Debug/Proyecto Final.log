@@ -1,3 +1,11 @@
 ﻿  Proyecto Final.cpp
-C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Proyecto Final.cpp(1009,6): warning C4101: 'id': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Productos.h(110,17): warning C4101: 'a': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Empleado.h(112,17): warning C4101: 'a': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_detalle_compras.h(112,11): warning C4101: 'precio_un': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_detalle_compras.h(193,8): warning C4101: 'idcomp': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_detalle_compras.h(348,7): warning C4101: 'z': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Proyecto Final.cpp(882,28): warning C4101: 'cero': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Proyecto Final.cpp(882,19): warning C4101: 'idcompra': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Productos.h(136): warning C4715: 'Productos::validar': no todas las rutas de acceso de control devuelven un valor
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Empleado.h(138): warning C4715: 'Empleado::validar': no todas las rutas de acceso de control devuelven un valor
   Proyecto Final.vcxproj -> C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\x64\Debug\Proyecto Final.exe

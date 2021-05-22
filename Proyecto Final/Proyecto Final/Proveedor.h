@@ -32,8 +32,6 @@ public:
 	void setADireccion(string direc) { direccion = direc; }
 	void setTelefono(string tel) { telefono = tel; }
 	
-	
-
 	string getProveedor() { return proveedor; }
 	string getNit() { return nit; }
 	string getDireccion() { return direccion; }
@@ -63,12 +61,15 @@ public:
 		}
 		cn.cerrar_conexion();
 	}
+
 	void Leer() {
 		int q_estado;
 		ConexionBD cn = ConexionBD();
 		MYSQL_ROW fila;
 		MYSQL_RES* resultado;
 		cn.abrir_conexion();
+		int  xa = 8, xb = 8, xc = 8, xd = 8, xe = 8, xf = 8, xg = 8, xh = 8, xi = 8;
+		int za = 8, zb = 8, zc = 8, zd = 8, ze = 8, zf = 8, zg = 8, zh = 8, zi = 8, zj = 8;
 
 		if (cn.getConectar()) {
 			string consulta = "select   * from proveedores";
@@ -77,9 +78,20 @@ public:
 			if (!q_estado) {
 				resultado = mysql_store_result(cn.getConectar());
 				while (fila = mysql_fetch_row(resultado)) {
-					cout << fila[0] << " |      " << fila[1] << "|     " << fila[2] << "|    " << fila[3] << "|    " << fila[4]  << endl;
-				}
+					gotoxy(41,xa++); cout << fila[0]; 
+					gotoxy(48, xb++); cout << fila[1];
+					gotoxy(73, xc++); cout << fila[2];
+					gotoxy(93, xd++); cout << fila[3];
+					gotoxy(123, xe++); cout << fila[4];
 
+					gotoxy(40, ze++); cout << ("|");//0
+					gotoxy(45, za++); cout << ("|");//1
+					gotoxy(68, zb++); cout << ("|");//2
+					gotoxy(88, zc++); cout << ("|");//3
+					gotoxy(118, zd++); cout << ("|");//4
+					gotoxy(134, zf++); cout << ("|");//5
+
+				}
 			}
 			else {
 				cout << "\n\n\t--------- Error en la Base de datos  ---------";
@@ -136,6 +148,7 @@ public:
 		}
 		cn.cerrar_conexion();
 	}
+
 	void modificar(int idpro) {
 		int q_estado;
 		ConexionBD cn = ConexionBD();
@@ -162,59 +175,27 @@ public:
 					gotoxy(25, 10); cout << "Direccion: " << fila[3];
 					gotoxy(25, 11); cout << "Telefono: " << fila[4];
 					cin.ignore();
-
-					cout << ("\n\nProveedor: ") << fila[1] << endl;
+					cout << "\nIngrese el nuevo nombre del proveedor:\n";
+					getline(cin, pro);
+					cout << "Ingrese el nuevo nit:\n";
+					getline(cin, nit);
+					cout << "Ingrese la nueva direccion\n";
+					getline(cin, dire);
+					cout << "Ingrese el nuevo telefono\n";
+					getline(cin, tel);
 					cout << ("Desea modificarlo [s/n]: ");
 					cin >> s;
 					if ((s == 's') || (s == 'S')) {
-						cin.ignore();
-
-						cout << "ingrese el nuevo Proveedor: \n";
-						getline(cin, pro);
-						string consulta2 = "update proveedores set proveedor = '" + pro + "' where idProveedor =" + Id + "";
+						string consulta2 = "update proveedores set proveedor = '" + pro + "',nit = '" + nit + "',direccion = '" + dire + "',telefono = '" + tel + "' where idProveedor =" + Id + "";
 						const char* c = consulta2.c_str();
 						q_estado = mysql_query(cn.getConectar(), c);
+						if (!q_estado) {
+							cout << "\n\n--------- Modificacion exitosa  ---------" << endl;
+						}
+						else {
+							cout << "\n\n--------- Error al modificar  ---------" << endl;
+						}
 					}
-				
-					cout << ("\n\nNit: ") << fila[2] << endl;
-					cout << ("Desea modificarlo [s/n]: ");
-					cin >> s;
-					if ((s == 's') || (s == 'S')) {
-						cin.ignore();
-
-						cout << "ingrese nuevo  Nit: \n";
-						getline(cin, nit);
-						string consulta2 = "update proveedores set nit = '" + nit + "' where idProveedor =" + Id + "";
-						const char* c = consulta2.c_str();
-						q_estado = mysql_query(cn.getConectar(), c);
-					}
-
-					cout << ("\n\nDireccion: ") << fila[3] << endl;
-					cout << ("Desea modificarlo [s/n]: ");
-					cin >> s;
-					if ((s == 's') || (s == 'S')) {
-						cin.ignore();
-						cout << "ingrese la nueva direccion: \n";
-						getline(cin, dire);
-						string consulta2 = "update proveedores set direccion = '" + dire + "' where idProveedor =" + Id + "";
-						const char* c = consulta2.c_str();
-						q_estado = mysql_query(cn.getConectar(), c);
-					}
-					cin.ignore();
-
-					cout << ("\n\nDTelefono: ") << fila[4] << endl;
-					cout << ("Desea modificarlo [s/n]: ");
-					cin >> s;
-					if ((s == 's') || (s == 'S')) {
-			
-						cout << "ingrese nuevo No. Telfono: \n";
-						cin >> tel;
-						string consulta2 = "update proveedores set telefono = '" + tel + "' where idProveedor =" + Id + "";
-						const char* c = consulta2.c_str();
-						q_estado = mysql_query(cn.getConectar(), c);
-					}
-					cin.ignore();
-
 				}
 
 			}
@@ -228,5 +209,4 @@ public:
 		}
 		cn.cerrar_conexion();
 	}
-
 };

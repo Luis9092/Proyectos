@@ -75,12 +75,74 @@ public:
 		}
 		cn.cerrar_conexion();
 	}
+	void Leer_marca() {
+		int q_estado;
+		ConexionBD cn = ConexionBD();
+		MYSQL_ROW fila;
+		MYSQL_RES* resultado;
+		cn.abrir_conexion();
+		int t = 8;
+		if (cn.getConectar()) {
+			string a;
+			string consulta = "select * from marcas";
+			const char* c = consulta.c_str();
+			q_estado = mysql_query(cn.getConectar(), c);
+			if (!q_estado) {
+				resultado = mysql_store_result(cn.getConectar());
+				while (fila = mysql_fetch_row(resultado)) {
+					gotoxy(80, t);  cout << fila[0] << "  |" << fila[1] << endl;
+					t++;
+				}
+
+			}
+			else {
+				cout << "--------- Error en la Base de datos  ---------" << endl;
+			}
+
+		}
+		else {
+			cout << "--------- Error en la Conexion ---------" << endl;
+		}
+		cn.cerrar_conexion();
+	}
+	int validar(int id)
+	{
+		int q_estado, a;
+		ConexionBD cn = ConexionBD();
+		MYSQL_ROW fila;
+		MYSQL_RES* resultado;
+		string uno = to_string(id);
+		cn.abrir_conexion();
+		if (cn.getConectar()) {
+			string consulta = "select idMarca from marcas where idMarca = " + uno + "";
+			const char* c = consulta.c_str();
+			q_estado = mysql_query(cn.getConectar(), c);
+			if (!q_estado) {
+				resultado = mysql_store_result(cn.getConectar());
+				while (fila = mysql_fetch_row(resultado)) {
+					if (fila[0] == 0) {
+						return 1;
+					}
+					else {
+						return 3;
+					}
+				}
+			}
+		}
+		else {
+			cout << "--------- Error en la Conexion ---------" << endl;
+		}
+		cn.cerrar_conexion();
+	}
+
 	void leer() {
 		int q_estado;
 		ConexionBD cn = ConexionBD();
 		MYSQL_ROW fila;
 		MYSQL_RES* resultado;
 		cn.abrir_conexion();
+		int  xa = 8, xb = 8, xc = 8, xd = 8, xe = 8, xf = 8, xg = 8, xh = 8, xi = 8;
+		int za = 8, zb = 8, zc = 8, zd = 8, ze = 8, zf = 8, zg = 8, zh = 8, zi = 8, zj = 8;
 
 		if (cn.getConectar()) {
 			string consulta = "select   x.idProducto,x.producto,x.descripcion,x.imagen,x.precio_costo,x.precio_venta, x.existencia, x.fecha_ingreso, m.marca from productos as x inner join marcas as m on x.idMarca=m.idMarca";
@@ -89,7 +151,27 @@ public:
 			if (!q_estado) {
 				resultado = mysql_store_result(cn.getConectar());
 				while (fila = mysql_fetch_row(resultado)) {
-					cout << fila[0] << "|      " << fila[1] << "|     " << fila[2] << "|    " << fila[3] << "|    " << fila[4] << "|   " << fila[5] << "|      " << fila[6] << "         |" << fila[7] << "   |" << fila[8] << endl;
+					gotoxy(1, xa++); cout << fila[0];//id
+					gotoxy(7, xb++); cout << fila[1];//producto
+					gotoxy(32, xc++);cout << fila[8];//id marca
+					gotoxy(53, xd++); cout << fila[2];//Decripcion
+					gotoxy(84, xe++); cout << fila[3];//Imagen
+					gotoxy(109, xf++);cout << fila[4];//precioC
+					gotoxy(122, xg++); cout << fila[5];//PrecioV
+					gotoxy(135, xh++); cout << fila[6];//Existencia
+					gotoxy(147, xi++); cout<< fila[7];//fecha
+					
+					gotoxy(0, zi++); cout << ("|");//0
+					gotoxy(4, za++); cout << ("|");//1
+					gotoxy(28, zb++); cout << ("|");//2
+					gotoxy(45, zc++); cout << ("|");//3
+					gotoxy(78, zd++); cout << ("|");//4
+					gotoxy(104, ze++); cout << ("|");//5
+					gotoxy(118, zf++); cout << ("|");//6
+					gotoxy(133, zg++); cout << ("|");//7
+					gotoxy(145, zh++); cout << ("|");//8
+					gotoxy(167, zj++); cout << ("|");//9
+
 				}
 
 			}
@@ -103,6 +185,7 @@ public:
 		}
 		cn.cerrar_conexion();
 	}
+
 	void eliminar(int idpro) {
 		int q_estado;
 		ConexionBD cn = ConexionBD();
@@ -187,104 +270,37 @@ public:
 					gotoxy(25, 15); cout << "Id Marca: " << fila[8];
 
 					cin.ignore();
-
-					cout << ("\n\nProducto: ") << fila[1] << endl;
+					cout << "\nIngrese el nuevo producto:\n";
+					getline(cin, pro);
+					cout << "Ingrese la nueva descripcion:\n";
+					getline(cin, desc);
+					cout << "Ingrese la nueva imagen:\n";
+					getline(cin, ima);
+					cout << "Ingrese el nuevo precio de costo\n";
+					cin >> costop;
+					string uno = to_string(costop);
+					cout << "Ingrese el nuevo precio de venta\n";
+					cin >> ventap;
+					string dos = to_string(ventap);
+					cout << "Ingrese la nueva cantidad de existencias\n";
+					cin >> exis;
+					string tres = to_string(exis);
+					cout << "Ingrese el nuevo id de marca\n";
+					cin >> idmarc;
+					string cua = to_string(idmarc);
 					cout << ("Desea modificarlo [s/n]: ");
 					cin >> s;
 					if ((s == 's') || (s == 'S')) {
-						cin.ignore();
-						cout << "ingrese el nuevo Producto: \n";
-						getline(cin, pro);
-
-						string consulta2 = "update productos set producto = '" + pro + "' where idProducto =" + Id + "";
+						string consulta2 = "update productos set producto = '" + pro + "', descripcion = '" + desc + "',  imagen = '" + ima + "', fecha_ingreso = " + fecha + ", precio_costo = " + uno + ", precio_venta = " + dos + ", existencia = " + tres + ", idMarca = " + cua + " where idProducto = " + Id + "";
 						const char* c = consulta2.c_str();
 						q_estado = mysql_query(cn.getConectar(), c);
+						if (!q_estado) {
+							cout << "\n\n--------- Modificacion exitosa  ---------" << endl;
+						}
+						else {
+							cout << "\n\n--------- Error al modificar  ---------" << endl;
+						}
 					}
-					cin.ignore();
-					cout << ("\n\nDescripcion: ") << fila[2] << endl;
-					cout << ("Desea modificarlo [s/n]: ");
-					cin >> s;
-					if ((s == 's') || (s == 'S')) {
-						cin.ignore();
-
-						cout << "ingrese el nueva descripcion: \n";
-						getline(cin, desc);
-						string consulta2 = "update productos set descripcion = '" + desc + "' where idProducto =" + Id + "";
-						const char* c = consulta2.c_str();
-						q_estado = mysql_query(cn.getConectar(), c);
-					}
-					cin.ignore();
-
-					cout << ("\n\nimagen: ") << fila[3] << endl;
-					cout << ("Desea modificarlo [s/n]: ");
-					cin >> s;
-					if ((s == 's') || (s == 'S')) {
-						cout << "ingrese la nueva imagen : \n";
-						cin >> ima;
-						string consulta2 = "update productos set imagen = '" + ima + "' where idProducto =" + Id + "";
-						const char* c = consulta2.c_str();
-						q_estado = mysql_query(cn.getConectar(), c);
-					}
-
-					cout << ("\n\nPrecio Costo: ") << fila[4] << endl;
-					cout << ("Desea modificarlo [s/n]: ");
-					cin >> s;
-					if ((s == 's') || (s == 'S')) {
-						cout << "ingrese el nuevo precio costo: \n";
-						cin >> costop;
-						string uno = to_string(costop);
-						string consulta2 = "update productos set precio_costo = " + uno + " where idProducto =" + Id + "";
-						const char* c = consulta2.c_str();
-						q_estado = mysql_query(cn.getConectar(), c);
-					}
-
-
-					cout << ("\n\nPrecio Venta: ") << fila[5] << endl;
-					cout << ("Desea modificarlo [s/n]: ");
-					cin >> s;
-					if ((s == 's') || (s == 'S')) {
-						cout << "ingrese el nuevo precio venta: \n";
-						cin >> ventap;
-						string dos = to_string(ventap);
-						string consulta2 = "update productos set precio_venta = " + dos + " where idProducto =" + Id + "";
-						const char* c = consulta2.c_str();
-						q_estado = mysql_query(cn.getConectar(), c);
-					}
-
-					cout << ("\n\nExistencia: ") << fila[6] << endl;
-					cout << ("Desea modificarlo [s/n]: ");
-					cin >> s;
-					if ((s == 's') || (s == 'S')) {
-						cout << "ingrese el nueva existencia: \n";
-						cin >> exis;
-						string tres = to_string(exis);
-						string consulta2 = "update productos set existencia = " + tres + " where idProducto =" + Id + "";
-						const char* c = consulta2.c_str();
-						q_estado = mysql_query(cn.getConectar(), c);
-					}
-
-
-
-					cout << ("\n\nFecha ingreso: ") << fila[7] << endl;
-					cout << ("Desea modificarlo [s/n]: ");
-					cin >> s;
-					if ((s == 's') || (s == 'S')) {
-						string consulta2 = "update productos set fecha_ingreso = '" + fecha + "' where idProducto =" + Id + "";
-						const char* c = consulta2.c_str();
-						q_estado = mysql_query(cn.getConectar(), c);
-					}
-					cout << ("\n\nId Marca: ") << fila[8] << endl;
-					cout << ("Desea modificarlo [s/n]: ");
-					cin >> s;
-					if ((s == 's') || (s == 'S')) {
-						cout << "ingrese nuevo Id Marca: \n";
-						cin >> idmarc;
-						string cua = to_string(idmarc);
-						string consulta2 = "update productos set idMarca = '" + cua + "' where idProducto =" + Id + "";
-						const char* c = consulta2.c_str();
-						q_estado = mysql_query(cn.getConectar(), c);
-					}
-
 				}
 
 			}

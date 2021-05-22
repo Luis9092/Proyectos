@@ -65,7 +65,8 @@ public:
 		MYSQL_ROW fila;
 		MYSQL_RES* resultado;
 		cn.abrir_conexion();
-
+		int ab = 8, ac = 8;
+		int ba = 8, be = 8, bc = 8;
 		if (cn.getConectar()) {
 			string a;
 			string consulta = "select * from marcas";
@@ -74,7 +75,12 @@ public:
 			if (!q_estado) {
 				resultado = mysql_store_result(cn.getConectar());
 				while (fila = mysql_fetch_row(resultado)) {
-					cout << fila[0] << "  |" << fila[1] << endl;
+					gotoxy(41, ab++); cout << fila[0];
+					gotoxy(46,ac++); cout << fila[1];
+					
+					gotoxy(40, bc++); cout << ("|");
+					gotoxy(45, ba++); cout << ("|");
+					gotoxy(78, be++); cout << ("|");
 				}
 
 			}
@@ -90,48 +96,51 @@ public:
 	}
 
 	void eliminar(int idmarca) {
-		int q_estado;
-		ConexionBD cn = ConexionBD();
-		MYSQL_ROW fila;
-		MYSQL_RES* resultado;
-		cn.abrir_conexion();
-		char z;
-		if (cn.getConectar()) {
-			string Id = to_string(idmarca);
-			// executar el query
-			string eliminar = "select * from marcas where idMarca= " + Id + "";
-			const char* c = eliminar.c_str();
-			q_estado = mysql_query(cn.getConectar(), c);
-			if (!q_estado) {
-				resultado = mysql_store_result(cn.getConectar());
-				while (fila = mysql_fetch_row(resultado)) {
+	
+			int q_estado;
+			ConexionBD cn = ConexionBD();
+			MYSQL_ROW fila;
+			MYSQL_RES* resultado;
+			cn.abrir_conexion();
 
-					gotoxy(30, 7); cout << "------------    [" << fila[0] << "]     ------------- ";
-					gotoxy(25, 8); cout << "Marca: " << fila[1];
+			if (cn.getConectar()) {
+				string Id = to_string(idmarca);
+				string marca;
+				char s;
+				string consulta2 = "select * from marcas where idMarca= " + Id + "";
+				const char* c = consulta2.c_str();
+				q_estado = mysql_query(cn.getConectar(), c);
 
-					gotoxy(25, 20); cout << ("Desea Eliminar [s/n]: ");
-					cin >> z;
-					if ((z == 's') || (z == 'S')) {
-						string eliminar = "delete from marcas where idMarca =" + Id + "";
-						const char* c = eliminar.c_str();
-						q_estado = mysql_query(cn.getConectar(), c);
+				if (!q_estado) {
+					resultado = mysql_store_result(cn.getConectar());
 
-						cout << "\n\n\t\tEliminacion Exitosa, Grande Luis ..." << endl;
+					while (fila = mysql_fetch_row(resultado)) {
+
+						gotoxy(30, 7); cout << "------------    [" << fila[0] << "]     ------------- ";
+						gotoxy(25, 8); cout << "Marca: " << fila[1];
+
+						cout << ("\n\n\t\tDesea eliminar [s/n]: ");
+						cin >> s;
+						if ((s == 's') || (s == 'S')) {
+							string consulta3 = "delete from marcas where idMarca =" + Id + "";
+							const char* d = consulta3.c_str();
+							q_estado = mysql_query(cn.getConectar(), d);
+							cout << ("\n\t\t Marca Eliminadocorrectamente ");
+						}
+
 					}
-					else {
-						cout << ("\n\t\tRegistro No Eliminado");
-					}
+
 				}
+				else {
+					cout << "\n\n--------- Error al modificar  ---------" << endl;
+				}
+
 			}
 			else {
-				cout << "\n\n\t\t--------- Error al eliminar  ---------" << endl;
+				cout << " \n\n---------  Error en la Conexion ---------" << endl;
 			}
+			cn.cerrar_conexion();
 		}
-		else {
-			cout << "\n\n\t\t--------- Error en la Conexion ---------" << endl;
-		}
-		cn.cerrar_conexion();
-	}
 
 	void modificar(int idmarca) {
 		int q_estado;
@@ -155,20 +164,19 @@ public:
 
 					gotoxy(30, 7); cout << "------------    [" << fila[0] << "]     ------------- ";
 					gotoxy(25, 8); cout << "Marca: " << fila[1];
-
-
-					cout << ("\n\nMarca: ") << fila[1] << endl;
+					cout << "\ningrese el nueva marca: \n";
+					cin >> marca;
 					cout << ("Desea modificarlo [s/n]: ");
 					cin >> s;
 					if ((s == 's') || (s == 'S')) {
-						cout << "ingrese el nueva marca: \n";
-						cin >> marca;
 						string consulta2 = "update marcas set marca = '" + marca + "' where idMarca =" + Id + "";
 						const char* c = consulta2.c_str();
 						q_estado = mysql_query(cn.getConectar(), c);
-						cout << (" Marca modificado correctamente ");
+						cout << (" Marca modificada correctamente \n");
 					}
-
+					else {
+						cout << "\n\n--------- Error al modificar  ---------" << endl;
+					}
 				}
 
 			}

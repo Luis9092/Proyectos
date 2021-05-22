@@ -75,7 +75,8 @@ public:
 		MYSQL_ROW fila;
 		MYSQL_RES* resultado;
 		cn.abrir_conexion();
-
+		int f = 8, x = 8, xa = 8, xb = 8, xc = 8, xd = 8, xe = 8, xf = 8;
+		int za = 8, zb=8,zc=8, zd=8,ze=8, zf = 8, zg = 8, zh = 8;
 		if (cn.getConectar()) {
 			string consulta = "select  * from clientes";
 			const char* c = consulta.c_str();
@@ -83,7 +84,31 @@ public:
 			if (!q_estado) {
 				resultado = mysql_store_result(cn.getConectar());
 				while (fila = mysql_fetch_row(resultado)) {
-					cout << fila[0] << "|      " << fila[1] << "|     " << fila[2] << "|    " << fila[3] << "|    " << fila[4] << "|   " << fila[5] << "|      " << fila[6] << "         |" << fila[7] << endl;
+
+					//	cout << fila[0] << "|      " << fila[1] << "|     " << fila[2] << "|    " << fila[3] << "| " << fila[5] << "|      " << fila[6] << "         |" << fila[7];
+					gotoxy(1, f++); cout << fila[0]; //id
+					gotoxy(5, x++); cout << fila[1]; //Nombres
+					gotoxy(30, xa++); cout << fila[2]; //Apellidos
+					gotoxy(54, xb++); cout << fila[3]; //Nit
+					gotoxy(92, xc++); cout << fila[5]; //telefono
+					gotoxy(110, xd++); cout << fila[6]; //correo
+					gotoxy(138, xe++); cout << fila[7]; //fecha
+
+					if (strlen(fila[4]) == 0) {
+						gotoxy(69, xf++); cout << "    Femenino"; //Genero
+					}// Verificar esto
+					else {
+						gotoxy(69, xf++); cout << "    Masculino";//Genero
+					}
+					gotoxy(4, za++); cout << ("|"); //id
+					gotoxy(28, zb++); cout << ("|"); //Nombres
+					gotoxy(52, zc++); cout << ("|"); //Apellidos
+					gotoxy(68, zd++); cout << ("|"); //Nit
+					gotoxy(87, ze++); cout << ("|"); //telefono
+					gotoxy(106, zf++); cout << ("|"); //correo
+					gotoxy(134, zg++); cout << ("|"); //fecha
+					gotoxy(160, zh++); cout << ("|");
+				
 				}
 
 			}
@@ -157,8 +182,7 @@ public:
 		if (cn.getConectar()) {
 			string Id = to_string(idpro);
 			string nom, ape, nit, telefono, correo, fechaIngreso = "now()";
-			int gen = 0;
-			char s;
+			char s, gen;
 			string consulta2 = "select * from clientes where idCliente= " + Id + "";
 			const char* c = consulta2.c_str();
 			q_estado = mysql_query(cn.getConectar(), c);
@@ -172,98 +196,50 @@ public:
 					gotoxy(25, 9); cout << "Nombres: " << fila[1];
 					gotoxy(25, 10); cout << "Apellidos: " << fila[2];
 					gotoxy(25, 11); cout << "Nit: " << fila[3];
-					gotoxy(25, 12); cout << "Genero: " << fila[4];
+					gotoxy(25, 12); cout << "Genero: ";
+					if (strlen(fila[4]) == 0) {
+						cout << "Femenino";
+					}
+					else {
+						cout << "Masculino";
+					}
 					gotoxy(25, 13); cout << "Telefono: " << fila[5];
 					gotoxy(25, 14); cout << "Correo electronico: " << fila[6];
 					gotoxy(25, 15); cout << "Fecha ingreso: " << fila[7];
-				
+
 					cin.ignore();
-					cout << ("\n\nNombres: ") << fila[1] << endl;
-					cout << ("Desea modificarlo [s/n]: ");
-					cin >> s;
-					if ((s == 's') || (s == 'S')) {
-						cin.ignore();
-						cout << "ingrese el nuevo Nombres: \n";
-						getline(cin, nom);
-
-						string consulta2 = "update clientes set nombres = '" + nom + "' where idCliente =" + Id + "";
-						const char* c = consulta2.c_str();
-						q_estado = mysql_query(cn.getConectar(), c);
-					}
+					cout << "\nIngrese los nuevos Nombres:\n";
+					getline(cin, nom);
+					cout << "Ingrese los nuevos apellidos:\n";
+					getline(cin, ape);
+					cout << "Ingrese el nuevo nit:\n";
+					getline(cin, nit);
+					cout << "Ingrese el nuevo genero [M o F]:\n";
+					cin >> gen;
 					cin.ignore();
-					cout << ("\n\nApellidos: ") << fila[2] << endl;
+					if ((gen == 'm') || (gen == 'M')) {
+						gen = '1';
+					}
+					if ((gen == 'f') || (gen == 'F')) {
+						gen = '0';
+					}
+					cout << "Ingrese el nuevo numero de telefono:\n";
+					getline(cin, telefono);
+					cout << "Ingrese el nuevo correo electronico:\n";
+					getline(cin, correo);
 					cout << ("Desea modificarlo [s/n]: ");
 					cin >> s;
 					if ((s == 's') || (s == 'S')) {
-						cin.ignore();
-
-						cout << "ingrese el nueva Apellido: \n";
-						getline(cin, ape);
-						string consulta2 = "update clientes set apellidos = '" + ape + "' where idCliente =" + Id + "";
+						string consulta2 = "update clientes set nombres = '" + nom + "', apellidos = '" + ape + "', NIT= '" + nit + "', genero = " + gen + ", telefono = '" + telefono + "',correo_electronico =' " + correo + "', fechaingreso = " + fechaIngreso + " where idCliente =" + Id + "";
 						const char* c = consulta2.c_str();
 						q_estado = mysql_query(cn.getConectar(), c);
+						if (!q_estado) {
+							cout << "\n\n--------- Modificacion Exitosa  ---------" << endl;
+						}
+						else {
+							cout << "\n\n--------- Error al modificar  ---------" << endl;
+						}
 					}
-
-
-					cout << ("\n\nNit: ") << fila[3] << endl;
-					cout << ("Desea modificarlo [s/n]: ");
-					cin >> s;
-					if ((s == 's') || (s == 'S')) {
-						cin.ignore();
-						cout << "ingrese la nuevo No. Nit : \n";
-						getline(cin, nit);
-						string consulta2 = "update clientes set NIT= '" + nit + "' where idCliente =" + Id + "";
-						const char* c = consulta2.c_str();
-						q_estado = mysql_query(cn.getConectar(), c);
-					}
-
-					cout << ("\n\nGenero: ") << fila[4] << endl;
-					cout << ("Desea modificarlo [s/n]: ");
-					cin >> s;
-					if ((s == 's') || (s == 'S')) {
-						cin.ignore();
-						cout << "ingrese el nuevo Genero: \n";
-						cin >> gen;
-						string a = to_string(gen);
-						string consulta2 = "update clientes set gen = " + a + " where idCliente =" + Id + "";
-						const char* c = consulta2.c_str();
-						q_estado = mysql_query(cn.getConectar(), c);
-					}
-
-
-					cout << ("\n\nTelefono: ") << fila[5] << endl;
-					cout << ("Desea modificarlo [s/n]: ");
-					cin >> s;
-					if ((s == 's') || (s == 'S')) {
-						cin.ignore();
-						cout << "ingrese el nuevo No. telefono: \n";
-						getline(cin, telefono);
-						string consulta2 = "update clientes set telefono = '" +telefono + "' where idCliente =" + Id + "";
-						const char* c = consulta2.c_str();
-						q_estado = mysql_query(cn.getConectar(), c);
-					}
-
-					cout << ("\n\nCorreo electronico: ") << fila[6] << endl;
-					cout << ("Desea modificarlo [s/n]: ");
-					cin >> s;
-					if ((s == 's') || (s == 'S')) {
-						cin.ignore();
-						cout << "ingrese el nuevo correo: \n";
-						getline(cin, correo);
-						string consulta2 = "update clientes set correo_electronico =' " + correo + "' where idCliente =" + Id + "";
-						const char* c = consulta2.c_str();
-						q_estado = mysql_query(cn.getConectar(), c);
-					}
-
-					cout << ("\n\nFecha Fecha Ingreso: ") << fila[7] << endl;
-					cout << ("Desea modificarlo [s/n]: ");
-					cin >> s;
-					if ((s == 's') || (s == 'S')) {
-						string consulta2 = "update clientes set fechaingreso = " +fechaIngreso  + " where idCliente =" + Id + "";
-						const char* c = consulta2.c_str();
-						q_estado = mysql_query(cn.getConectar(), c);
-					}
-					cout << ("\t\t\n\nDatos modificados correctamente");
 				}
 
 			}

@@ -42,14 +42,13 @@ class Compras
 	// atributos
 protected:
 	string fecha_orden, fecha_ingreso;
-	int No_orden_compra = 0, idProveedor = 0;
+	int idProveedor = 0;
 	
 	// costructor
 protected:
 	Compras() {
 	}
-	Compras(int Nocompra, int idprod, string fechaO,  string ing) {
-		No_orden_compra = Nocompra;
+	Compras(int idprod, string fechaO,  string ing) {
 		idProveedor = idprod;
 		fecha_orden = fechaO;
 		fecha_ingreso = ing;
@@ -61,14 +60,13 @@ class Compras_detalle
 {
 	// atributos
 protected:
-	int Id_compra = 0, Id_producto = 0, cantidad=0;
+	int  Id_producto = 0, cantidad=0;
 	float precio_costo_U;
 	// costructor
 protected:
 	Compras_detalle() {
 	}
-	Compras_detalle(int Nocompra, int idprod, int cant, float pcu) {
-		Id_compra = Nocompra;
+	Compras_detalle( int idprod, int cant, float pcu) {
 		Id_producto = idprod;
 		cantidad = cant;
 		precio_costo_U =pcu;
