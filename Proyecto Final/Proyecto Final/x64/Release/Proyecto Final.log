@@ -1,7 +1,53 @@
 ﻿  Proyecto Final.cpp
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Productos.h(54,14): warning C4101: 'resultado': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Productos.h(52,7): warning C4101: 'q_estado3': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Productos.h(53,13): warning C4101: 'fila': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Productos.h(134,17): warning C4101: 'a': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Empleado.h(112,17): warning C4101: 'a': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_detalle_compras.h(156,7): warning C4101: 'q_estado2': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_detalle_compras.h(163,9): warning C4101: 's': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_detalle_compras.h(163,12): warning C4101: 'gen': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_detalle_compras.h(181,17): warning C4101: 'a': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_detalle_compras.h(211,17): warning C4101: 'a': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_detalle_compras.h(333,17): warning C4101: 'a': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_detalle_compras.h(489,19): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_detalle_compras.h(618,17): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_detalle_compras.h(599,7): warning C4101: 'q_estado3': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_detalle_compras.h(624,9): warning C4101: 's': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_detalle_compras.h(624,12): warning C4101: 'gen': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_detalle_compras.h(701,17): warning C4101: 'a': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(148,14): warning C4101: 'resultado2': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(146,19): warning C4101: 'fila2': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(146,26): warning C4101: 'fila3': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(144,28): warning C4101: 'q_estado3': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(144,17): warning C4101: 'q_estado2': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(156,14): warning C4101: 'obtener': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(149,14): warning C4101: 'resultado3': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(161,9): warning C4101: 's': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(286,9): warning C4101: 's': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(504,17): warning C4101: 'a': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(547,25): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(531,17): warning C4101: 'a': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(595,20): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(617,13): warning C4101: 'filac': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(656,17): warning C4101: 'a': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(689,13): warning C4101: 'filac': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(761,17): warning C4101: 'a': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(915,9): warning C4101: 'lleva3': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Proyecto Final.cpp(201,32): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Proyecto Final.cpp(218,46): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Proyecto Final.cpp(229,32): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Proyecto Final.cpp(145,8): warning C4101: 'lleva3': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Proyecto Final.cpp(144,13): warning C4101: 'lleva2': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Proyecto Final.cpp(1119,28): warning C4101: 'cero': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Proyecto Final.cpp(1119,19): warning C4101: 'idcompra': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Proyecto Final.cpp(1331,45): warning C4101: 'idventa': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Proyecto Final.cpp(1332,24): warning C4101: 'total': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Proyecto Final.cpp(1331,6): warning C4101: 'No_factura': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Proyecto Final.cpp(1333,16): warning C4101: 'obteneridventa': variable local sin referencia
   Generando código
-  1 of 271 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
+  95 of 178 functions (53.4%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    4 functions had inline decision re-evaluated but remain unchanged
+    10 functions had inline decision re-evaluated but remain unchanged
   Generación de código finalizada
-  Proyecto Final.vcxproj -> C:\Users\Luis Fernando Paxel\Documents\Proyecto Final\x64\Release\Proyecto Final.exe
+  Proyecto Final.vcxproj -> C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\x64\Release\Proyecto Final.exe

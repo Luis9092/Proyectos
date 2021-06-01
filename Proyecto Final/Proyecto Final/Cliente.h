@@ -58,14 +58,14 @@ public:
 			// executar el query
 			q_estado = mysql_query(cn.getConectar(), i);
 			if (!q_estado) {
-				gotoxy(40, 18); cout << "Ingreso Exitoso, Grande Luis ... ...";
+				cout << "\n\t\t\tIngreso Exitoso!!";
 			}
 			else {
-				gotoxy(40, 18);	cout << "--------- Error al Ingresar Datos ---------";
+					cout << "\n\t--------- Error al Ingresar Datos ---------";
 			}
 		}
 		else {
-			gotoxy(40, 20); cout << "--------- Error en la Conexion ---------";
+		 cout << "\n\t--------- Error en la Conexion ---------";
 		}
 		cn.cerrar_conexion();
 	}
@@ -155,7 +155,7 @@ public:
 						const char* c = eliminar.c_str();
 						q_estado = mysql_query(cn.getConectar(), c);
 
-						cout << "\n\n\t\tEliminacion Exitosa, Grande Luis ..." << endl;
+						cout << "\n\n\t\tEliminacion Exitosa!!" << endl;
 					}
 					else {
 						cout << ("\n\t\tRegistro No Eliminado");
@@ -254,6 +254,24 @@ public:
 		cn.cerrar_conexion();
 	}
 
-
+	int validar_nit(string vnit) {
+		const char* vali = vnit.c_str();
+		//strcpy(vali, vnit.c_str());
+		if (strlen(vali) < 8) {
+			gotoxy(40, 11); cout << "                                                                  ";
+			gotoxy(40, 11); cout << "------Su nit es demasiado corto" << endl;
+			return 1;
+		}
+		if (strlen(vali) > 8) {
+			gotoxy(40, 11); cout << "                                                                  ";
+			gotoxy(40, 11);  cout << "------Su nit es demasiado largo" << endl;
+			return 1;
+		}
+		if (strlen(vali) == 8) {
+			gotoxy(40, 11); cout << "                                                                  ";
+			gotoxy(40, 11);  cout << "------El nit es valido" << endl;
+			return 3;
+		}
+	}
 };
 

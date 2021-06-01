@@ -44,7 +44,7 @@ public:
 			const char* i = insertar.c_str();
 			q_estado = mysql_query(cn.getConectar(), i);
 			if (!q_estado) {
-				cout << "Ingreso Exitoso, Grande Luis ... ..." << endl;
+				cout << "Ingreso Exitoso!!" << endl;
 			}
 			else {
 				cout << "--------- Error al Ingresar Datos ---------" << endl;
@@ -118,7 +118,7 @@ public:
 						const char* c = eliminar.c_str();
 						q_estado = mysql_query(cn.getConectar(), c);
 
-						cout << "\n\n\t\tEliminacion Exitosa, Grande Luis ..." << endl;
+						cout << "\n\n\t\tEliminacion Exitosa!!" << endl;
 					}
 					else {
 						cout << ("\n\t\tRegistro No Eliminado");

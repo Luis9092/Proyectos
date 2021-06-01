@@ -60,11 +60,11 @@ public:
 		string b = to_string(idpuesto);
 		if (cn.getConectar()) {
 
-			string  insertar = "insert into empleados(nombres,apellidos,direccion,telefono,DPI,genero,fecha_nacimiento,idPuesto,fecha_inicio_labores,fechaingreso) VALUES ('" + nombres + "','" + apellidos + "','" + direccion + "','" + telefono + "','" + dpi + "'," + a + ",'" + Fnacido + "'," + b + ",'" + Finicio + "'," + fechai + ")";
+			string  insertar = "insert into empleados(nombres,apellidos,direccion,telefono,DPI,genero,fecha_nacimiento,idPuesto,fecha_inicio_labores,fechaingreso) VALUES ('" + nombres + "','" + apellidos + "','" + direccion + "','" + telefono + "','" + dpi + "'," + a + ",'" + Fnacido + "'," + b + "," + Finicio + "," + fechai + ")";
 			const char* i = insertar.c_str();
 			q_estado = mysql_query(cn.getConectar(), i);
 			if (!q_estado) {
-				cout << "\t\t\tIngreso Exitoso, Grande Luis ... ...\n";
+				cout << "\t\t\tIngreso Exitoso!!\n";
 			}
 			else {
 				cout << "\t\t\t--------- Error al insertar ---------";
@@ -143,15 +143,49 @@ public:
 		MYSQL_ROW fila;
 		MYSQL_RES* resultado;
 		cn.abrir_conexion();
+		int  xa = 8, xb = 8, xc = 8, xd = 8, xe = 8, xf = 8, xg = 8, xh = 8, xi = 8, xj = 8, xl = 8, xm=8;
+		int za = 8, zb = 8, zc = 8, zd = 8, ze = 8, zf = 8, zg = 8, zh = 8, zi = 8, zj = 8, zk = 8, zl = 8;
 
 		if (cn.getConectar()) {
-			string consulta = "select   x.idempleado,x.nombres,x.apellidos,x.direccion,x.telefono,x.DPI, x.genero, x.fecha_nacimiento, fecha_inicio_labores,fechaingreso, m.puesto from empleados as x inner join puestos as m on x.idPuesto=m.idPuesto";
+			string consulta = "select   x.idempleado,x.nombres,x.apellidos,x.direccion,x.telefono,x.DPI, x.genero,m.puesto, x.fecha_nacimiento, fecha_inicio_labores,fechaingreso  from empleados as x inner join puestos as m on x.idPuesto=m.idPuesto";
 			const char* c = consulta.c_str();
 			q_estado = mysql_query(cn.getConectar(), c);
 			if (!q_estado) {
 				resultado = mysql_store_result(cn.getConectar());
 				while (fila = mysql_fetch_row(resultado)) {
-					cout << fila[0] << "|   " << fila[1] << "|   " << fila[2] << "|   " << fila[3] << "|    " << fila[4] << "|   " << fila[5] << "|   " << fila[6] << "  |" << fila[7] << "   |" << fila[8] << "  |" << fila[9] << " |" << fila[10] << endl;
+					//cout << fila[0] << "|   " << fila[1] << "|   " << fila[2] << "|   " << fila[3] << "|    " << fila[4] << "|   " << fila[5] << "|   ";
+					gotoxy(1, xa++); cout << fila[0]; // Id
+					gotoxy(5, xb++); cout << fila[1];   //Nombres
+					gotoxy(25, xc++); cout << fila[2];  //Apellidos
+					gotoxy(45, xd++); cout << fila[3]; //Direccion
+					gotoxy(70, xe++); cout << fila[4]; //telefono
+					gotoxy(82, xf++); cout << fila[5];  //dpi
+					gotoxy(110, xi++); cout << fila[7]; //Puesto
+					gotoxy(124, xj++); cout << fila[8]; //Fecha Nacimiento
+					gotoxy(136, xl++); cout << fila[9]; //Fecha Inicio Laboral
+					gotoxy(148, xm++); cout << fila[10]; //Fecha Ingreso
+				
+					gotoxy(0, za++); cout << ("|");//1
+					gotoxy(4, zb++); cout << ("|");//2
+					gotoxy(24, zc++); cout << ("|");//3
+					gotoxy(44, zd++); cout << ("|");//4
+					gotoxy(69, ze++); cout << ("|");//5
+					gotoxy(81, zf++); cout << ("|");//6
+					gotoxy(109, zg++); cout << ("|");//
+					gotoxy(123, zh++); cout << ("|");//8
+					gotoxy(135, zj++); cout << ("|");//9
+					gotoxy(167, zk++); cout << ("|");//9
+					gotoxy(147, zi++); cout << ("|");//9
+					gotoxy(97, zl++); cout << ("|");//9
+
+					if (strlen(fila[6]) == 0) {
+						gotoxy(98, xg++); cout << "Femenino";
+					}
+					else {
+						gotoxy(98, xg++);	cout << "Masculino";
+					}
+			
+					//cout << "  |" << fila[7] << "   |" << fila[8] << "  |" << fila[9] << " |" << fila[10] << endl;
 				}
 
 			}
@@ -165,7 +199,6 @@ public:
 		}
 		cn.cerrar_conexion();
 	}
-
 	void eliminar(int idpro) {
 		int q_estado;
 		ConexionBD cn = ConexionBD();
@@ -201,7 +234,7 @@ public:
 						const char* c = eliminar.c_str();
 						q_estado = mysql_query(cn.getConectar(), c);
 
-						gotoxy(30, 22); cout << "Eliminacion Exitosa, Grande Luis ...";
+						gotoxy(30, 22); cout << "Eliminacion Exitosa!!";
 					}
 					else {
 						gotoxy(30, 22); cout << ("Registro No Eliminado");
@@ -385,4 +418,24 @@ public:
 		}
 		cn.cerrar_conexion();
 	}
+	int validar_DPI(string vnit) {
+		const char* vali = vnit.c_str();
+		//strcpy(vali, vnit.c_str());
+		if (strlen(vali) < 13) {
+			gotoxy(20, 13); cout << "                                                                  ";
+			gotoxy(20, 13); cout << "[    No de dpi invalido  ]" << endl;
+			return 1;
+		}
+		if (strlen(vali) > 13) {
+			gotoxy(20, 13); cout << "                                                                  ";
+			gotoxy(20, 13);  cout << "[   No de dpi invalido ]" << endl;
+			return 1;
+		}
+		if (strlen(vali) ==13) {
+			gotoxy(20, 13); cout << "                                                                  ";
+			gotoxy(20, 13);  cout << "[  No de dpi correcto  ]" << endl;
+			return 3;
+		}
+	}
+
 };

@@ -49,6 +49,10 @@ public:
 	// metodo
 	void crear() {
 		int q_estado;
+		int q_estado3;
+		MYSQL_ROW fila;
+		MYSQL_RES* resultado;
+
 		ConexionBD cn = ConexionBD();
 
 		cn.abrir_conexion();
@@ -57,22 +61,41 @@ public:
 		string c = to_string(pventa);
 		string d = to_string(existencia);
 
+/*		if (cn.getConectar()) {
 
-		if (cn.getConectar()) {
-			string  insertar = "insert into productos(producto,idMarca,descripcion,imagen,precio_costo,precio_venta,existencia,fecha_ingreso) VALUES ('" + producto + "'," + a + ",'" + Descripcion + "','" +Imagen + "'," + b + "," + c + "," + d + "," +FechaI + ")";
-			const char* i = insertar.c_str();
-			// executar el query
-			q_estado = mysql_query(cn.getConectar(), i);
-			if (!q_estado) {
-				gotoxy(40, 18); cout << "Ingreso Exitoso, Grande Luis ... ...";
-			}
+			string consulta3 = "select idProducto from productos where idProducto = " + gg + "";
+			const char* cf = consulta3.c_str();
+			q_estado3 = mysql_query(cn.getConectar(), cf);
+			if (!q_estado3) {
+				resultado = mysql_store_result(cn.getConectar());
+				while (fila = mysql_fetch_row(resultado)) {
+					zeta = atof(fila[0]);
+
+				}
+*/
+				if (cn.getConectar()) {
+					string  insertar = "insert into productos(producto,idMarca,descripcion,imagen,precio_costo,precio_venta,existencia,fecha_ingreso) VALUES ('" + producto + "'," + a + ",'" + Descripcion + "','" + Imagen + "'," + b + "," + c + "," + d + "," + FechaI + ")";
+					const char* i = insertar.c_str();
+					// executar el query
+					q_estado = mysql_query(cn.getConectar(), i);
+					if (!q_estado) {
+						cout << "\t\t\tIngreso Exitoso!!";
+					}
+					else {
+						cout << "\t\t\t--------- Error al Ingresar Datos ---------";
+					}
+				}
+				else {
+					cout << "\n\t\t\t--------- Error en la Conexion ---------";
+				}
+/*
+	}
+		}
 			else {
-				gotoxy(40, 18);	cout << "--------- Error al Ingresar Datos ---------";
+				cout << "\n\t\t\t--------- Error en la Conexion ---------";
 			}
-		}
-		else {
-			gotoxy(40, 20);cout << "--------- Error en la Conexion ---------" ;
-		}
+
+*/
 		cn.cerrar_conexion();
 	}
 	void Leer_marca() {
@@ -90,8 +113,8 @@ public:
 			if (!q_estado) {
 				resultado = mysql_store_result(cn.getConectar());
 				while (fila = mysql_fetch_row(resultado)) {
-					gotoxy(80, t);  cout << fila[0] << "  |" << fila[1] << endl;
-					t++;
+					gotoxy(80, t++);  cout << fila[0] << "  |" << fila[1] << endl;
+					
 				}
 
 			}
@@ -105,6 +128,7 @@ public:
 		}
 		cn.cerrar_conexion();
 	}
+	
 	int validar(int id)
 	{
 		int q_estado, a;
@@ -156,9 +180,9 @@ public:
 					gotoxy(32, xc++);cout << fila[8];//id marca
 					gotoxy(53, xd++); cout << fila[2];//Decripcion
 					gotoxy(84, xe++); cout << fila[3];//Imagen
-					gotoxy(109, xf++);cout << fila[4];//precioC
-					gotoxy(122, xg++); cout << fila[5];//PrecioV
-					gotoxy(135, xh++); cout << fila[6];//Existencia
+					gotoxy(107, xf++);cout <<("Q.")<< fila[4];//precioC
+					gotoxy(120, xg++); cout <<("Q.")<< fila[5];//PrecioV
+					gotoxy(136, xh++); cout << ("Q.") << fila[6];//Existencia
 					gotoxy(147, xi++); cout<< fila[7];//fecha
 					
 					gotoxy(0, zi++); cout << ("|");//0
@@ -221,7 +245,7 @@ public:
 						const char* c = eliminar.c_str();
 						q_estado = mysql_query(cn.getConectar(), c);
 
-						gotoxy(30,22); cout << "Eliminacion Exitosa, Grande Luis ...";
+						gotoxy(30,22); cout << "Eliminacion Exitosa!! ";
 					}
 					else {
 						gotoxy(30, 22); cout << ("Registro No Eliminado");
@@ -237,6 +261,7 @@ public:
 		}
 		cn.cerrar_conexion();
 	}
+
 	void modificar(int idpro) {
 		int q_estado;
 		ConexionBD cn = ConexionBD();

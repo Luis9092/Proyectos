@@ -1,0 +1,6 @@
+ida: 14			|Hola Mundo
+No factura: 23136
+Serie: A
+Nombres: 
+apellidos: 
+nit: 

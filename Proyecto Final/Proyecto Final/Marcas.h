@@ -47,7 +47,7 @@ public:
 			// executar el query
 			q_estado = mysql_query(cn.getConectar(), i);
 			if (!q_estado) {
-				cout << "Ingreso Exitoso, Grande Luis ... ..." << endl;
+				cout << "Ingreso Exitoso!!" << endl;
 			}
 			else {
 				cout << "--------- Error al Ingresar Datos ---------" << endl;

@@ -1,11 +1,40 @@
 ﻿  Proyecto Final.cpp
 C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Productos.h(110,17): warning C4101: 'a': variable local sin referencia
 C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Empleado.h(112,17): warning C4101: 'a': variable local sin referencia
-C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_detalle_compras.h(112,11): warning C4101: 'precio_un': variable local sin referencia
-C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_detalle_compras.h(193,8): warning C4101: 'idcomp': variable local sin referencia
-C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_detalle_compras.h(348,7): warning C4101: 'z': variable local sin referencia
-C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Proyecto Final.cpp(882,28): warning C4101: 'cero': variable local sin referencia
-C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Proyecto Final.cpp(882,19): warning C4101: 'idcompra': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_detalle_compras.h(156,7): warning C4101: 'q_estado2': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_detalle_compras.h(163,9): warning C4101: 's': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_detalle_compras.h(163,12): warning C4101: 'gen': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_detalle_compras.h(230,17): warning C4101: 'a': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_detalle_compras.h(386,19): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_detalle_compras.h(514,17): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_detalle_compras.h(495,7): warning C4101: 'q_estado3': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_detalle_compras.h(520,9): warning C4101: 's': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_detalle_compras.h(520,12): warning C4101: 'gen': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_detalle_compras.h(597,17): warning C4101: 'a': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(146,14): warning C4101: 'obtener': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(150,9): warning C4101: 's': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(250,9): warning C4101: 's': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(379,17): warning C4101: 'a': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(409,17): warning C4101: 'a': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(452,25): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(436,17): warning C4101: 'a': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(500,20): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(554,13): warning C4101: 'filac': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(584,17): warning C4101: 'a': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(618,13): warning C4101: 'filac': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Proyecto Final.cpp(892,28): warning C4101: 'cero': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Proyecto Final.cpp(892,19): warning C4101: 'idcompra': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Proyecto Final.cpp(1067,45): warning C4101: 'idventa': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Proyecto Final.cpp(1067,6): warning C4101: 'No_factura': variable local sin referencia
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Proyecto Final.cpp(1069,16): warning C4101: 'obteneridventa': variable local sin referencia
 C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Productos.h(136): warning C4715: 'Productos::validar': no todas las rutas de acceso de control devuelven un valor
 C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Empleado.h(138): warning C4715: 'Empleado::validar': no todas las rutas de acceso de control devuelven un valor
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_detalle_compras.h(256): warning C4715: 'Maestro_detalle_compras::validar': no todas las rutas de acceso de control devuelven un valor
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_detalle_compras.h(623): warning C4715: 'Maestro_detalle_compras2::validar': no todas las rutas de acceso de control devuelven un valor
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(405): warning C4715: 'Maestro_ventas::validarnit': no todas las rutas de acceso de control devuelven un valor
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(432): warning C4715: 'Maestro_ventas::retornaridcliente': no todas las rutas de acceso de control devuelven un valor
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(610): warning C4715: 'Maestro_ventas::validaridempleado': no todas las rutas de acceso de control devuelven un valor
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(674): warning C4715: 'Maestro_ventas::validaridproducto': no todas las rutas de acceso de control devuelven un valor
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(461): warning C4715: 'Maestro_ventas::retornarprecio_venta': no todas las rutas de acceso de control devuelven un valor
+C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\Proyecto Final\Maestro_ventas.h(515): warning C4715: 'Maestro_ventas::total': no todas las rutas de acceso de control devuelven un valor
   Proyecto Final.vcxproj -> C:\Users\Luis Fernando Paxel\Documents\Proyecto c++\Proyecto Final\x64\Debug\Proyecto Final.exe

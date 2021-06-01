@@ -61,14 +61,13 @@ class Compras_detalle
 	// atributos
 protected:
 	int  Id_producto = 0, cantidad=0;
-	float precio_costo_U;
+	
 	// costructor
 protected:
 	Compras_detalle() {
 	}
-	Compras_detalle( int idprod, int cant, float pcu) {
+	Compras_detalle( int idprod, int cant) {
 		Id_producto = idprod;
 		cantidad = cant;
-		precio_costo_U =pcu;
 	}
 };
